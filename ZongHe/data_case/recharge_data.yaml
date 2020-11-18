@@ -1,0 +1,31 @@
+#充值成功
+- casedata: {"mobilephone":"18066668888","amount":1111.11}
+  expect: {"status":1,"code":"10001","data":null,"msg":"充值成功"}
+
+#参数错误
+- casedata: {"mobilephone":"","amount":1111.11}
+  expect: {"status":0,"code":"20103","data":{},"msg":"手机号不能为空"}
+
+#此手机号对应的会员不存在
+- casedata: {"mobilephone":"18048512478","amount":1111.11}
+  expect: {"status":0,"code":"20104","data":{},"msg":"此手机号对应的会员不存在"}
+
+#手机格式不正确
+- casedata: {"mobilephone":"11111668888","amount":1111.11}
+  expect: {"status":0,"code":"20109","data":{},"msg":"手机号码格式不正确"}
+
+#请输入金额
+- casedata: {"mobilephone":"18066668888","amount":}
+  expect: {'status': 0, 'code': '20115', 'data': None, 'msg': '请输入金额'}
+
+#输入金额的金额小数不能超过两位
+- casedata: {"mobilephone":"18066668888","amount":1111.111}
+  expect: {'status': 0, 'code': '20116', 'data': None, 'msg': '输入金额的金额小数不能超过两位'}
+
+#请输入范围在0到50万之间的正数金额
+- casedata: {"mobilephone":"18066668888","amount":-1111.11}
+  expect: {'status': 0, 'code': '20117', 'data': None, 'msg': '请输入范围在0到50万之间的正数金额'}
+
+#请输入数字
+- casedata: {"mobilephone":"18066668888","amount":11a1.11}
+  expect: {'status': 0, 'code': '20118', 'data': None, 'msg': '请输入数字'}
